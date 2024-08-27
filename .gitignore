@@ -15,3 +15,5 @@ coverage
 .invalid
 .vercel/remix-build-result.json
 .env.dev
+**/*/.DS_STORE
+.DS_STORE
