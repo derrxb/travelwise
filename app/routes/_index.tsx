@@ -5,11 +5,11 @@ import { SiteNav } from '~/ui/molecules/site-nav';
 export const meta: MetaFunction = () => {
   return [
     {
-      title: 'Krabuu | Sell anything online in Belize, without the hassle',
+      title: 'Zelo | Running tools for runners by runners',
     },
     {
       name: 'description',
-      content: 'Sell anything online in Belize, without the hassle',
+      content: 'Running tools for runners by runners',
     },
   ];
 };

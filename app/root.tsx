@@ -13,7 +13,7 @@ import {
 import { TooltipProvider } from './ui/atoms/tooltip';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Krabuu | Accept Payments in Belize Online' }];
+  return [{ title: 'Zelo | Running tools for runners by runners' }];
 };
 
 export default function App() {

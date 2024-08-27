@@ -21,11 +21,11 @@ const getValuesFromRequest = async (request: Request) => {
 export const meta: MetaFunction = () => {
   return [
     {
-      title: 'Sign in to your Krabuu Account',
+      title: 'Sign in to your Zelo Account',
     },
     {
       name: 'description',
-      content: 'Sign in to your account to manage your products & see your completed orders.',
+      content: 'Sign in to your account to use any of our running tools',
     },
   ];
 };
