@@ -1,7 +1,5 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
-import digiWalletWhite from 'public/images/wallets/digiwallet-white.png';
-import ekyashWhite from 'public/images/wallets/ekaysh-white.png';
 
 export enum ButtonColors {
   Primary,
@@ -94,11 +92,6 @@ export const Button = ({
         )}
         rel="noreferrer"
       >
-        {color === ButtonColors.EKyash ? <img src={ekyashWhite} alt="ekyash" className="-mb-1 mr-2 h-6 w-24" /> : null}
-        {color === ButtonColors.DigiWallet ? (
-          <img src={digiWalletWhite} alt="digiwallet" className="mr-4 h-6 w-24" />
-        ) : null}
-
         {children}
 
         {props.icon ? <span className="ml-2">props.icon</span> : null}
@@ -124,11 +117,6 @@ export const Button = ({
       )}
       {...props}
     >
-      {color === ButtonColors.EKyash ? <img src={ekyashWhite} alt="ekyash" className="-mb-1 mr-2 h-6 w-24" /> : null}
-      {color === ButtonColors.DigiWallet ? (
-        <img src={digiWalletWhite} alt="digiwallet" className="mr-2 h-5 w-20" />
-      ) : null}
-
       {children}
 
       {props.icon ? <span className="ml-2">{props.icon}</span> : null}
