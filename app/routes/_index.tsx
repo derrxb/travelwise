@@ -15,11 +15,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async (args: LoaderFunctionArgs) => {
-  await authenticator.isAuthenticated(args.request, {
-    failureRedirect: `/login?redirectTo=${new URL(args.request.url).pathname}`,
-  });
-
-  throw redirect('/');
+  return null;
 };
 
 export default function Index() {
