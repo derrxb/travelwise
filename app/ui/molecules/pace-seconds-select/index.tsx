@@ -1,7 +1,7 @@
 import { ErrorMessage } from '~/ui/atoms/error-message';
 import { Label } from '~/ui/atoms/label';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '~/ui/atoms/Select';
-import paces from '~/content/paces/en.json';
+import { paces } from '~/content/paces/en.json';
 
 export type PaceSecondsSelectProps = {
   defaultValue: string;
@@ -18,7 +18,7 @@ export const PaceSecondsSelect = ({ defaultValue, errorMessage }: PaceSecondsSel
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {paces.paces.seconds?.map((pace) => <SelectItem value={pace.value.toString()}>{pace.label}</SelectItem>)}
+            {paces.seconds?.map((pace) => <SelectItem value={pace.value.toString()}>{pace.label}</SelectItem>)}
           </SelectGroup>
         </SelectContent>
       </Select>

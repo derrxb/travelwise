@@ -4,7 +4,7 @@ import { Pace } from '~/ui/atoms/pace';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/ui/atoms/table';
 
 export type PaceTableProps = {
-  distances: { label: string }[];
+  distances: { label: string; isTrackEvent?: boolean }[];
   unit: PaceUnit;
   result: {
     distance: string;
@@ -34,7 +34,11 @@ export const PaceTable = ({ result, unit, distances }: PaceTableProps) => {
         </TableHeader>
         <TableBody>
           {result.map((pace, index) => (
-            <TableRow>
+            <TableRow
+              className={cn({
+                'bg-slate-200 rounded-md hover:!bg-slate-200': distances?.[index]?.isTrackEvent === true,
+              })}
+            >
               <TableCell>{distances?.[index]?.label}</TableCell>
               {pace.times?.map((time, timesIndex) => (
                 <TableCell
