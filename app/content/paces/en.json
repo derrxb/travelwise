@@ -185,5 +185,31 @@
       { "value": 31, "label": "31 miles" },
       { "value": 31.0685596, "label": "50 km" }
     ]
-  }
+  },
+  "faqs": [
+    {
+      "question": "What is a race pace calculator?",
+      "answer": "A pace calculator is a simple tool to help runners calculate their pace (time per distance) for different distances based on their expected pace per kilometer or mile."
+    },
+    {
+      "question": "How do I use a pace calculator?",
+      "answer": "To use a race pace calculator, you should select your expected time for a each kilometer or mile in your race. The calculator will provide your average pace, which is usually given in minutes per mile or minutes per kilometer."
+    },
+    {
+      "question": "Why is knowing my pace important?",
+      "answer": "If you know your pace, you can set realistic goals for your race, track your progress, and adapt your training to get your expected race result. It can also help with planning your race strategy and workouts."
+    },
+    {
+      "question": "Can a pace calculator predict race times?",
+      "answer": "Yes but it depends, pace calculators estimate your finish time for various distances based on your expected pace. But realize that there are other factors that can affect your race result include your overall physical and mental health, the weather, and the race course."
+    },
+    {
+      "question": "What units does a pace calculator use?",
+      "answer": "Our race pace calculator uses either minutes per mile or minutes per kilometer. You can often choose your preferred unit in the provided options."
+    },
+    {
+      "question": "How accurate are pace calculators?",
+      "answer": "Pace calculators provide estimates based on input data. While they offer useful projections, actual performance can vary due to factors like weather, terrain, and individual fitness."
+    }
+  ]
 }

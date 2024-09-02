@@ -19,6 +19,7 @@ import { PaceSecondsSelect } from '~/ui/molecules/pace-seconds-select';
 import { PaceTable } from '~/ui/molecules/pace-table';
 import { PaceUnitRadioGroup } from '~/ui/molecules/pace-unit-radio-group';
 import paces from '../content/paces/en.json';
+import { FrequentlyAskedQuestions } from '~/ui/organisms/paces/faq';
 
 export const meta: MetaFunction = () => {
   return [
@@ -105,46 +106,53 @@ const Page = () => {
   }, [minutes, seconds, unit, userId]);
 
   return (
-    <div className="max-w-7xl w-full mx-auto py-16 grid grid-cols-1 md:grid-cols-8 gap-8 p-4 md:px-0">
-      <div className="flex flex-col space-y-4 col-span-1 md:col-span-3">
-        <h2 className="text-2xl font-bold">Race Pace Calculator</h2>
-        <p>
-          Our Running Pace Calculator is just one of the many tools designed to help you achieve your goals. Simply
-          enter your pace, and we’ll provide you with projected finish times for various race distances—from quick 5Ks
-          to full marathons.
-        </p>
+    <div className="flex flex-col space-y-8 items-center w-full">
+      <div className="max-w-7xl w-full mx-auto py-16 grid grid-cols-1 md:grid-cols-8 gap-8 p-4 md:px-0">
+        <div className="flex flex-col space-y-4 col-span-1 md:col-span-3">
+          <h2 className="text-2xl font-bold">Race Pace Calculator</h2>
+          <p>
+            Our Running Pace Calculator is just one of the many tools designed to help you achieve your goals. Simply
+            enter your pace, and we’ll provide you with projected finish times for various race distances—from quick 5Ks
+            to full marathons.
+          </p>
 
-        <p>
-          It’s straightforward, reliable, and tailored to help you fine-tune your training and race-day strategy. Dive
-          in and discover how your pace measures up across the board!
-        </p>
+          <p>
+            It’s straightforward, reliable, and tailored to help you fine-tune your training and race-day strategy. Dive
+            in and discover how your pace measures up across the board!
+          </p>
 
-        <Form className="flex flex-col space-y-4" method="get" action="/pace-calculator">
-          <ErrorMessage message={actionData?.error} />
-          <input hidden defaultValue={userId} />
+          <Form className="flex flex-col space-y-4" method="get" action="/pace-calculator">
+            <ErrorMessage message={actionData?.error} />
+            <input hidden defaultValue={userId} />
 
-          <div className="grid grid-cols-2 gap-4">
-            <PaceMinutesSelect
-              defaultValue={minutes.toString()}
-              errorMessage={actionData?.fieldErrors?.paceMinutes?.[0]}
-            />
+            <div className="grid grid-cols-2 gap-4">
+              <PaceMinutesSelect
+                defaultValue={minutes.toString()}
+                errorMessage={actionData?.fieldErrors?.paceMinutes?.[0]}
+              />
 
-            <PaceSecondsSelect
-              defaultValue={seconds.toString()}
-              errorMessage={actionData?.fieldErrors?.paceSeconds?.[0]}
-            />
-          </div>
+              <PaceSecondsSelect
+                defaultValue={seconds.toString()}
+                errorMessage={actionData?.fieldErrors?.paceSeconds?.[0]}
+              />
+            </div>
 
-          <PaceUnitRadioGroup defaultValue={unit} errorMessage={actionData?.fieldErrors?.unit?.[0]} />
+            <PaceUnitRadioGroup defaultValue={unit} errorMessage={actionData?.fieldErrors?.unit?.[0]} />
 
-          <Button type="submit" className="w-fit px-4" size="lg">
-            Calculate Finish Time
-          </Button>
-        </Form>
+            <Button type="submit" className="w-fit px-4" size="lg">
+              Calculate Finish Time
+            </Button>
+          </Form>
+        </div>
+
+        <div className="col-span-1 md:col-span-5">
+          <PaceTable distances={distances} result={result} unit={unit} />
+        </div>
       </div>
 
-      <div className="col-span-1 md:col-span-5">
-        <PaceTable distances={distances} result={result} unit={unit} />
+      <div className="max-w-7xl w-full mx-auto gap-8 p-4 bg-slate-100 rounded-lg">
+        <h2 className="text-3xl font-semibold mb-2">Frequently Asked Questions</h2>
+        <FrequentlyAskedQuestions />
       </div>
     </div>
   );
