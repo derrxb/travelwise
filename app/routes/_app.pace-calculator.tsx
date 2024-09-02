@@ -1,5 +1,6 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
 import { Form, MetaFunction } from '@remix-run/react';
+import React from 'react';
 import { redirect, typedjson, useTypedActionData, useTypedLoaderData } from 'remix-typedjson';
 import { ZodError } from 'zod';
 import {
@@ -8,18 +9,16 @@ import {
   PaceCalculatorValidationErrors,
   PaceUnit,
 } from '~/domain/orders/services/calculate-pace-times';
+import { TrackedEvents } from '~/infrastructure/analytics/event';
+import { posthog } from '~/infrastructure/analytics/index.client';
+import { serverlytics } from '~/infrastructure/analytics/index.server';
 import { Button } from '~/ui/atoms/button';
 import { ErrorMessage } from '~/ui/atoms/error-message';
-import { Label } from '~/ui/atoms/label';
-import { Pace } from '~/ui/atoms/pace';
-import { RadioGroup, RadioGroupItem } from '~/ui/atoms/radio-group';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '~/ui/atoms/Select';
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/ui/atoms/table';
-import paces from '../content/paces/en.json';
-import { PaceTable } from '~/ui/molecules/pace-table';
 import { PaceMinutesSelect } from '~/ui/molecules/pace-minutes-select';
 import { PaceSecondsSelect } from '~/ui/molecules/pace-seconds-select';
+import { PaceTable } from '~/ui/molecules/pace-table';
 import { PaceUnitRadioGroup } from '~/ui/molecules/pace-unit-radio-group';
+import paces from '../content/paces/en.json';
 
 export const meta: MetaFunction = () => {
   return [
@@ -72,6 +71,13 @@ export const action = async (args: ActionFunctionArgs) => {
         count: 5,
       },
     });
+    serverlytics.capture({
+      distinctId: String(formData.get('userId')),
+      event: TrackedEvents.SubmitGeneratePaceForm,
+      properties: result,
+    });
+    // vercel should flush immediately
+    await serverlytics.flush();
   } catch (error) {
     return typedjson({
       error: 'Something went wrong. Please try again',
@@ -86,10 +92,21 @@ const Page = () => {
   const { result, unit, minutes, seconds } = useTypedLoaderData<typeof loader>();
   const actionData = useTypedActionData<typeof action>();
   const distances = unit === PaceUnit.Kilometers ? paces.distances.km : paces.distances.miles;
+  const userId = posthog?.get_distinct_id();
+
+  React.useEffect(() => {
+    if (userId) {
+      posthog.capture(TrackedEvents.GeneratePace, {
+        minutes,
+        seconds,
+        unit,
+      });
+    }
+  }, [minutes, seconds, unit, userId]);
 
   return (
-    <div className="max-w-7xl w-full mx-auto py-8 grid grid-cols-8 gap-8">
-      <div className="flex flex-col space-y-4 col-span-3">
+    <div className="max-w-7xl w-full mx-auto py-16 grid grid-cols-1 md:grid-cols-8 gap-8 p-4 md:px-0">
+      <div className="flex flex-col space-y-4 col-span-1 md:col-span-3">
         <h2 className="text-2xl font-bold">Race Pace Calculator</h2>
         <p>
           Welcome to Zelo.run, the ultimate destination for runners, built by runners. Our Running Pace Calculator is
@@ -104,6 +121,7 @@ const Page = () => {
 
         <Form className="flex flex-col space-y-4" method="get" action="/pace-calculator">
           <ErrorMessage message={actionData?.error} />
+          <input hidden defaultValue={userId} />
 
           <div className="grid grid-cols-2 gap-4">
             <PaceMinutesSelect
@@ -125,7 +143,7 @@ const Page = () => {
         </Form>
       </div>
 
-      <div className="col-span-5">
+      <div className="col-span-1 md:col-span-5">
         <PaceTable distances={distances} result={result} unit={unit} />
       </div>
     </div>

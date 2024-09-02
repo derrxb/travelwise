@@ -11,6 +11,7 @@ import {
   useRouteError,
 } from '@remix-run/react';
 import { TooltipProvider } from './ui/atoms/tooltip';
+import { PHProvider } from './provider/posthog-provider';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Zelo | Running tools for runners by runners' }];
@@ -34,7 +35,9 @@ export default function App() {
 
       <body className="h-full w-full font-sans flex min-h-screen flex-col bg-muted/40">
         <TooltipProvider>
-          <Outlet />
+          <PHProvider>
+            <Outlet />
+          </PHProvider>
           <ScrollRestoration />
           <Scripts />
         </TooltipProvider>
