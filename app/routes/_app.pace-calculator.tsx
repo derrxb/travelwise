@@ -24,7 +24,7 @@ import { FrequentlyAskedQuestions } from '~/ui/organisms/paces/faq';
 export const meta: MetaFunction = () => {
   return [
     {
-      title: 'Running Pace Calculator | Zelo.run – Predict Your Race Times',
+      title: 'Running Pace Calculator | Zelo.run – Running Tools, Perfected',
     },
     {
       name: 'description',
