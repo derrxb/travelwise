@@ -72,7 +72,7 @@ export default {
       },
       fontFamily: {
         sans: ['Raleway', ...fontFamily.sans],
-        serif: ['Raleway', ...fontFamily.serif],
+        serif: ['Roboto', ...fontFamily.serif],
       },
       keyframes: {
         'accordion-down': {

@@ -23,7 +23,7 @@ export const PaceTable = ({ result, unit, distances }: PaceTableProps) => {
             <TableHead className="font-semibold">Distances</TableHead>
             {result?.[0]?.paces?.map((pace, index) => (
               <TableHead
-                className={cn('font-semibold', {
+                className={cn('font-semibold font-sans', {
                   'hidden md:table-cell': index !== 2,
                 })}
               >
@@ -42,7 +42,7 @@ export const PaceTable = ({ result, unit, distances }: PaceTableProps) => {
               <TableCell>{distances?.[index]?.label}</TableCell>
               {pace.times?.map((time, timesIndex) => (
                 <TableCell
-                  className={cn('font-semibold', {
+                  className={cn('font-normal', {
                     'hidden md:table-cell': timesIndex !== 2,
                   })}
                 >

@@ -106,10 +106,10 @@ const Page = () => {
   }, [minutes, seconds, unit, userId]);
 
   return (
-    <div className="flex flex-col space-y-8 items-center w-full">
+    <div className="flex flex-col space-y-8 items-center w-full font-serif">
       <div className="max-w-7xl w-full mx-auto py-16 grid grid-cols-1 md:grid-cols-8 gap-8 p-4 md:px-0">
         <div className="flex flex-col space-y-4 col-span-1 md:col-span-3">
-          <h2 className="text-2xl font-bold">Race Pace Calculator</h2>
+          <h2 className="text-2xl font-bold font-sans">Race Pace Calculator</h2>
           <p>
             Our Running Pace Calculator is just one of the many tools designed to help you achieve your goals. Simply
             enter your pace, and we’ll provide you with projected finish times for various race distances—from quick 5Ks
@@ -151,7 +151,7 @@ const Page = () => {
       </div>
 
       <div className="max-w-7xl w-full mx-auto gap-8 p-4 bg-slate-100 rounded-lg">
-        <h2 className="text-3xl font-semibold mb-2">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-semibold mb-2 font-sans">Frequently Asked Questions</h2>
         <FrequentlyAskedQuestions />
       </div>
     </div>
