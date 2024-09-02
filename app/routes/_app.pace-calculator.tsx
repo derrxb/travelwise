@@ -109,9 +109,9 @@ const Page = () => {
       <div className="flex flex-col space-y-4 col-span-1 md:col-span-3">
         <h2 className="text-2xl font-bold">Race Pace Calculator</h2>
         <p>
-          Welcome to Zelo.run, the ultimate destination for runners, built by runners. Our Running Pace Calculator is
-          just one of the many tools designed to help you achieve your goals. Simply enter your pace, and we’ll provide
-          you with projected finish times for various race distances—from quick 5Ks to full marathons.{' '}
+          Our Running Pace Calculator is just one of the many tools designed to help you achieve your goals. Simply
+          enter your pace, and we’ll provide you with projected finish times for various race distances—from quick 5Ks
+          to full marathons.
         </p>
 
         <p>
