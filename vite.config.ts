@@ -41,6 +41,7 @@ export default defineConfig({
             'secure-json-parse',
             'sonic-boom',
             'strip-json-comments',
+            'posthog-js',
           ]
         : [],
   },
