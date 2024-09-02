@@ -5,7 +5,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="flex flex-col">
       <nav className="flex flex-row items-center w-full h-16 px-4 md:16 xl:px-32 bg-slate-100 font-sans">
-        <Link to="/" className="font-bold text-black text-2xl">
+        <Link to="/" className="font-bold text-black text-2xl font-sans">
           Zelo
         </Link>
       </nav>

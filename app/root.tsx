@@ -37,7 +37,7 @@ export default function App() {
         ></link>
       </head>
 
-      <body className="h-full w-full font-sans flex min-h-screen flex-col bg-muted/40">
+      <body className="h-full w-full flex min-h-screen flex-col bg-muted/40">
         <TooltipProvider>
           <PHProvider>
             <Outlet />
