@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://zelo.run
+
+# Sitemaps
+Sitemap: https://zelo.run/sitemap.xml
