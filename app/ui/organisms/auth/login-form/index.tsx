@@ -1,4 +1,4 @@
-import { Form } from '@remix-run/react';
+import { Form, Link } from '@remix-run/react';
 import { Button } from '~/ui/atoms/button';
 import { InputField } from '~/ui/atoms/input-field-deprecated';
 
@@ -38,8 +38,12 @@ export const LoginForm = (props: LoginFormProps) => {
         disabled={props.isSubmitting}
       />
 
-      <Button type="submit" className="w-full">
-        Login
+      <Link to="/forgot-password" className="ml-auto text-xs">
+        Forgot Password?
+      </Link>
+
+      <Button type="submit" size="lg" variant="default" className="!bg-gray-900 !text-white !w-fit !mx-auto">
+        Sign In
       </Button>
     </Form>
   );

@@ -90,18 +90,19 @@ const Login = () => {
   const actionData = useTypedActionData<typeof action>();
 
   return (
-    <div className="h-full w-full px-8 md:px-32">
+    <div className="h-full w-full px-4 md:px-20">
       <SiteNav />
 
       <div className="my-32 flex flex-col items-center space-y-4">
-        <Card className="mx-auto max-w-sm">
+        <Card className="mx-auto">
           <CardHeader>
-            <CardTitle className="text-2xl">Login</CardTitle>
-            <CardDescription>Enter your email below to log into your account</CardDescription>
+            <CardTitle className="text-2xl text-black">Sign In Now</CardTitle>
+            <CardDescription className="text-gray-600">Discover the World with Every Sign In</CardDescription>
           </CardHeader>
 
           <CardContent>
             <LoginForm
+              className="flex flex-col space-y-2"
               isSubmitting={transition.state === 'submitting'}
               errors={actionData?.errors}
               initialValues={{
