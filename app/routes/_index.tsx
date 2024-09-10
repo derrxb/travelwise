@@ -3,11 +3,11 @@ import { redirect, type LoaderFunctionArgs, type MetaFunction } from '@vercel/re
 export const meta: MetaFunction = () => {
   return [
     {
-      title: 'Zelo | Running tools for runners by runners',
+      title: 'TravelWise | TravelWise with AI',
     },
     {
       name: 'description',
-      content: 'Running tools for runners by runners',
+      content: 'Your AI trip planner',
     },
   ];
 };

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { UserEntity } from '~/domain/orders/entities/user';
+import { UserEntity } from '~/domain/travelwise/entities/user';
 
 /**
  * A base fake user entity that does not yet exist in the database.

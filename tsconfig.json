@@ -37,16 +37,16 @@
         "./app/*"
       ],
       "~/entities/*": [
-        "app/domain/orders/entities/*"
+        "app/domain/travelwise/entities/*"
       ],
       "~/repositories/*": [
-        "app/domain/orders/repositories/*"
+        "app/domain/travelwise/repositories/*"
       ],
       "~/services/*": [
-        "app/domain/orders/services/*"
+        "app/domain/travelwise/services/*"
       ],
       "~/values/*": [
-        "app/domain/orders/values/*"
+        "app/domain/travelwise/values/*"
       ],
       "~/mocks": [
         "app/mocks/*"

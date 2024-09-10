@@ -2,8 +2,8 @@ import bycrypt from 'bcryptjs';
 import { Authenticator } from 'remix-auth';
 import { FormStrategy } from 'remix-auth-form';
 import { sessionStorage } from '~/session.server';
-import type { UserDTO } from './domain/orders/entities/user';
-import { LoginUser } from './domain/orders/services/login-user';
+import type { UserDTO } from './domain/travelwise/entities/user';
+import { LoginUser } from './domain/travelwise/services/login-user';
 
 export const getHashedPassword = async (password: string) => {
   const saltRounds = 12;

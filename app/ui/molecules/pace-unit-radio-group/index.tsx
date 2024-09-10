@@ -1,4 +1,4 @@
-import { PaceUnit } from '~/domain/orders/services/calculate-pace-times';
+import { PaceUnit } from '~/domain/travelwise/services/calculate-pace-times';
 import { ErrorMessage } from '~/ui/atoms/error-message';
 import { Label } from '~/ui/atoms/label';
 import { RadioGroup, RadioGroupItem } from '~/ui/atoms/radio-group';

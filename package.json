@@ -1,7 +1,7 @@
 {
-  "name": "zelo.run",
+  "name": "travelwise",
   "private": true,
-  "description": "- [Zelo.Run Docs](https://zelo.run)",
+  "description": "- [TravelWise](https://travelwise.com)",
   "license": "",
   "type": "module",
   "sideEffects": false,
@@ -161,12 +161,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/derrxb/kraabu.git"
+    "url": "git+https://github.com/derrxb/travelwise.git"
   },
   "keywords": [],
   "author": "",
   "bugs": {
-    "url": "https://github.com/derrxb/kraabu/issues"
+    "url": "https://github.com/derrxb/travelwise/issues"
   },
-  "homepage": "https://github.com/derrxb/kraabu#readme"
+  "homepage": "https://github.com/derrxb/travelwise#readme"
 }

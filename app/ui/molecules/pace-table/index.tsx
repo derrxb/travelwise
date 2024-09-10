@@ -1,4 +1,4 @@
-import { PaceUnit } from '~/domain/orders/services/calculate-pace-times';
+import { PaceUnit } from '~/domain/travelwise/services/calculate-pace-times';
 import { cn } from '~/lib/utils';
 import { Pace } from '~/ui/atoms/pace';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/ui/atoms/table';

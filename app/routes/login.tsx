@@ -21,11 +21,11 @@ const getValuesFromRequest = async (request: Request) => {
 export const meta: MetaFunction = () => {
   return [
     {
-      title: 'Sign in to your Zelo Account',
+      title: 'Sign in to your Travel Wise Account',
     },
     {
       name: 'description',
-      content: 'Sign in to your account to use any of our running tools',
+      content: 'Sign in to your account to use any of our travel tools',
     },
   ];
 };

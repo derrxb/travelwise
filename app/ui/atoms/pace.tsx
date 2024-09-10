@@ -1,4 +1,4 @@
-import { PaceUnit } from '~/domain/orders/services/calculate-pace-times';
+import { PaceUnit } from '~/domain/travelwise/services/calculate-pace-times';
 
 export const Pace = ({ pace, unit }: { pace: string; unit: PaceUnit }) => {
   return (
