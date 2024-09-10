@@ -1,4 +1,6 @@
-import { redirect, type LoaderFunctionArgs, type MetaFunction } from '@vercel/remix';
+import { type LoaderFunctionArgs, type MetaFunction } from '@vercel/remix';
+import { MainLayout } from '~/ui/layouts/main';
+import { IntroductionCarousel } from '~/ui/molecules/introduction-carousel';
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,9 +15,13 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async (args: LoaderFunctionArgs) => {
-  return redirect('/pace-calculator');
+  return null;
 };
 
 export default function Index() {
-  return <div className="h-full w-full px-8 md:px-32 font-sans"></div>;
+  return (
+    <MainLayout>
+      <IntroductionCarousel />
+    </MainLayout>
+  );
 }
