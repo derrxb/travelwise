@@ -21,7 +21,7 @@ const getValuesFromRequest = async (request: Request) => {
 export const meta: MetaFunction = () => {
   return [
     {
-      title: 'Sign in to your Travel Wise Account',
+      title: 'Sign in to your TravelWise',
     },
     {
       name: 'description',
