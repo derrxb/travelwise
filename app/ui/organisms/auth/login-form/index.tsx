@@ -25,7 +25,9 @@ export const LoginForm = (props: LoginFormProps) => {
         name="email"
         label="Email"
         type="text"
+        placeholder="Your Email"
         defaultValue={props.initialValues?.email}
+        labelClassName="sr-only"
       />
 
       <InputField
@@ -34,15 +36,17 @@ export const LoginForm = (props: LoginFormProps) => {
         name="password"
         label="Password"
         type="password"
+        placeholder="Your Password"
         defaultValue={props.initialValues?.password}
         disabled={props.isSubmitting}
+        labelClassName="sr-only"
       />
 
       <Link to="/forgot-password" className="ml-auto text-xs">
         Forgot Password?
       </Link>
 
-      <Button type="submit" size="lg" variant="default" className="!bg-gray-900 !text-white !w-fit !mx-auto">
+      <Button type="submit" size="lg" variant="default" className="!bg-gray-900 !text-white !w-full !mx-auto">
         Sign In
       </Button>
     </Form>

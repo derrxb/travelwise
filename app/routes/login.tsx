@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from '@vercel/remix';
 import { redirect } from '@remix-run/node';
-import { useNavigation } from '@remix-run/react';
+import { Link, useNavigation } from '@remix-run/react';
 import * as joi from 'joi';
 import { AuthorizationError } from 'remix-auth';
 import { authenticator } from '~/auth.server';
@@ -10,6 +10,8 @@ import { SiteNav } from '~/ui/molecules/site-nav';
 import { LoginForm } from '~/ui/organisms/auth/login-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/ui/atoms/card';
 import { typedjson, useTypedActionData } from 'remix-typedjson';
+import { MainLayout } from '~/ui/layouts/main';
+import { Button } from '~/ui/atoms/button';
 
 const getValuesFromRequest = async (request: Request) => {
   const formData = await request.formData();
@@ -90,30 +92,30 @@ const Login = () => {
   const actionData = useTypedActionData<typeof action>();
 
   return (
-    <div className="h-full w-full px-4 md:px-20">
-      <SiteNav />
+    <MainLayout className="space-y-8">
+      <Card className="w-full border-none shadow-lg">
+        <CardHeader>
+          <CardTitle className="text-2xl text-black">Sign In Now</CardTitle>
+          <CardDescription className="text-gray-600">Discover the World with Every Sign In</CardDescription>
+        </CardHeader>
 
-      <div className="my-32 flex flex-col items-center space-y-4">
-        <Card className="mx-auto">
-          <CardHeader>
-            <CardTitle className="text-2xl text-black">Sign In Now</CardTitle>
-            <CardDescription className="text-gray-600">Discover the World with Every Sign In</CardDescription>
-          </CardHeader>
+        <CardContent>
+          <LoginForm
+            className="flex flex-col space-y-2"
+            isSubmitting={transition.state === 'submitting'}
+            errors={actionData?.errors}
+            initialValues={{
+              email: actionData?.values?.email?.toString() ?? '',
+              password: actionData?.values?.password?.toString() ?? '',
+            }}
+          />
+        </CardContent>
+      </Card>
 
-          <CardContent>
-            <LoginForm
-              className="flex flex-col space-y-2"
-              isSubmitting={transition.state === 'submitting'}
-              errors={actionData?.errors}
-              initialValues={{
-                email: actionData?.values?.email?.toString() ?? '',
-                password: actionData?.values?.password?.toString() ?? '',
-              }}
-            />
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+      <Button asChild type="submit" size="lg" variant="default" className="!text-black !bg-white !w-full !mx-auto">
+        <Link to="/register">Sign Up</Link>
+      </Button>
+    </MainLayout>
   );
 };
 
