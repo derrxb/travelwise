@@ -14,7 +14,7 @@ export const NavLogo = ({ size, isLink, className, isText }: NavLogoProps) => {
 
   return (
     <As to="/" className={`font-extrabold tracking-tight text-primary-3 ${sizeClass} ${className}`}>
-      {isText ? 'TravelWise' : <img src={logo} className="h-10" />}
+      {isText ? 'TravelWise' : <img src={logo} className="w-36" />}
     </As>
   );
 };
