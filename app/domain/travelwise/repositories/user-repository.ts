@@ -1,6 +1,7 @@
 import prisma from '~/infrastructure/database/index.server';
 import type { UserDTO } from '../entities/user';
 import { UserEntity } from '../entities/user';
+import { UserProfileRepository } from './user-profile-repository';
 
 export class UserRepository {
   static async rebuildEntity(data: any) {
@@ -10,12 +11,16 @@ export class UserRepository {
 
     return new UserEntity({
       ...data,
+      UserProfile: await UserProfileRepository.rebuildEntity(data.UserProfile),
     });
   }
 
   static async findByUserId(userId: number) {
     const result = await prisma.user.findFirst({
       where: { id: userId },
+      include: {
+        UserProfile: true,
+      },
     });
 
     return await this.rebuildEntity(result);
@@ -49,10 +54,9 @@ export class UserRepository {
   }
 
   static async updateUser(user: UserEntity, data: Partial<UserDTO>) {
+    const updates = { ...data, UserProfile: undefined };
     const result = await prisma.user.update({
-      data: {
-        ...data,
-      },
+      data: updates,
       where: { id: user.id },
     });
 

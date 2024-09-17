@@ -18,9 +18,10 @@ export const meta: MetaFunction = () => {
 export const loader = async (args: LoaderFunctionArgs) => {
   const user = await authenticator.isAuthenticated(args.request, {});
 
-  if (!user?.isOnboarded) {
-    return redirect('/onboarding');
-  }
+  // TODO: Uncomment once we are able to mark onboarding as completed
+  // if (!user?.isOnboarded) {
+  //   return redirect('/onboarding');
+  // }
 
   return null;
 };

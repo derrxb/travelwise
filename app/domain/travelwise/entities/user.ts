@@ -1,4 +1,5 @@
 import type { User as UserORM } from '@prisma/client';
+import { UserProfileDTO, UserProfileEntity } from './user-profile';
 
 export class UserEntity {
   id?: UserORM['id'];
@@ -8,8 +9,9 @@ export class UserEntity {
   createdAt?: UserORM['createdAt'];
   updatedAt?: UserORM['updatedAt'];
   isOnboarded?: UserORM['isOnboarded'];
+  UserProfile: UserProfileEntity;
 
-  constructor(user: UserORM) {
+  constructor(user: UserORM & { UserProfile: UserProfileEntity }) {
     this.id = user.id;
     this.username = user.username;
     this.email = user.email;
@@ -17,6 +19,7 @@ export class UserEntity {
     this.createdAt = user.createdAt;
     this.updatedAt = user.updatedAt;
     this.isOnboarded = user.isOnboarded;
+    this.UserProfile = user.UserProfile;
   }
 
   isEqual(user: UserEntity) {
@@ -30,6 +33,7 @@ export class UserEntity {
       id: this.id,
       username: this.username,
       isOnboarded: this.isOnboarded,
+      UserProfile: this.UserProfile?.json(),
     } as UserDTO;
   }
 }
@@ -37,4 +41,5 @@ export class UserEntity {
 export type UserDTO = Pick<UserEntity, 'email' | 'id' | 'username' | 'isOnboarded'> & {
   createdAt?: string;
   updatedAt?: string;
+  UserProfile: UserProfileDTO;
 };

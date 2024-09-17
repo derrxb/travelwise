@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from '@remix-run/node';
-import { useTypedLoaderData } from 'remix-typedjson';
+import { redirect, useTypedLoaderData } from 'remix-typedjson';
 import { authenticator } from '~/auth.server';
 import { UserRepository } from '~/domain/travelwise/repositories/user-repository';
 import { MainLayout } from '~/ui/layouts/main';
@@ -14,7 +14,15 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
   const user = await UserRepository.findByUserId(userId!);
 
-  return null;
+  if (user?.UserProfile.isOnboardingComplete()) {
+    return redirect('/dashboard');
+  }
+
+  const onboardingStep = user?.UserProfile.currentOnboardingStep;
+
+  return {
+    onboardingStep,
+  };
 };
 
 const Onboarding = () => {

@@ -53,20 +53,21 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     // commit the session
     headers = new Headers({ 'Set-Cookie': await commitSession(session) });
   } catch (error) {
+    console.log({ error });
     // Because redirects work by throwing a Response, you need to check if the
     // caught error is a response and return it or throw it again
     if (error instanceof Response) throw error;
-    if (error instanceof joi.ValidationError) {
-      return typedjson({
-        values: await getValuesFromRequest(request),
-        errors: error.details.reduce((acc, curr) => {
-          return {
-            ...acc,
-            [curr.type]: curr.message,
-          };
-        }, {}),
-      });
-    }
+    // if (error instanceof joi.ValidationError) {
+    //   return typedjson({
+    //     values: await getValuesFromRequest(request),
+    //     errors: error.details.reduce((acc, curr) => {
+    //       return {
+    //         ...acc,
+    //         [curr.type]: curr.message,
+    //       };
+    //     }, {}),
+    //   });
+    // }
     if (error instanceof AuthorizationError) {
       return typedjson({
         values: await getValuesFromRequest(request),
