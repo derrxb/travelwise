@@ -7,6 +7,7 @@ export class UserEntity {
   password?: UserORM['password'];
   createdAt?: UserORM['createdAt'];
   updatedAt?: UserORM['updatedAt'];
+  isOnboarded?: UserORM['isOnboarded'];
 
   constructor(user: UserORM) {
     this.id = user.id;
@@ -15,6 +16,7 @@ export class UserEntity {
     this.password = user.password;
     this.createdAt = user.createdAt;
     this.updatedAt = user.updatedAt;
+    this.isOnboarded = user.isOnboarded;
   }
 
   isEqual(user: UserEntity) {
@@ -27,11 +29,12 @@ export class UserEntity {
       email: this.email,
       id: this.id,
       username: this.username,
+      isOnboarded: this.isOnboarded,
     } as UserDTO;
   }
 }
 
-export type UserDTO = Pick<UserEntity, 'email' | 'id' | 'username'> & {
+export type UserDTO = Pick<UserEntity, 'email' | 'id' | 'username' | 'isOnboarded'> & {
   createdAt?: string;
   updatedAt?: string;
 };
