@@ -1,7 +1,7 @@
 import { cn } from '~/lib/utils';
 import age from '/onboarding/age.png';
 
-export const CountryForm = () => {
+export const TravelerTypeForm = () => {
   return (
     <div className={cn('p-4 grid grid-cols-1 md:grid-cols-8 space-y-4 gap-4', {})}>
       <div className="md:col-span-6">

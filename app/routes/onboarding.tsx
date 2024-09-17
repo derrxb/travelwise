@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from '@remix-run/node';
-import { redirect, useTypedLoaderData } from 'remix-typedjson';
+import { redirect, typedjson, useTypedLoaderData } from 'remix-typedjson';
 import { authenticator } from '~/auth.server';
 import { UserRepository } from '~/domain/travelwise/repositories/user-repository';
 import { MainLayout } from '~/ui/layouts/main';
@@ -20,9 +20,9 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
   const onboardingStep = user?.UserProfile.currentOnboardingStep;
 
-  return {
+  return typedjson({
     onboardingStep,
-  };
+  });
 };
 
 const Onboarding = () => {
@@ -30,7 +30,7 @@ const Onboarding = () => {
 
   return (
     <MainLayout>
-      <OnboardingForm />
+      <OnboardingForm step={data.onboardingStep!} />
     </MainLayout>
   );
 };
