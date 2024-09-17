@@ -6,6 +6,7 @@ import { MainLayout } from '~/ui/layouts/main';
 import { OnboardingForm } from '~/ui/organisms/onboarding';
 
 export const loader = async (args: LoaderFunctionArgs) => {
+  const searchParams = new URL(args.request.url).searchParams;
   const userId = (
     await authenticator.isAuthenticated(args.request, {
       failureRedirect: '/login',
@@ -19,6 +20,9 @@ export const loader = async (args: LoaderFunctionArgs) => {
   }
 
   const onboardingStep = user?.UserProfile.currentOnboardingStep;
+  if (!searchParams.get('step') || searchParams.get('step') !== onboardingStep) {
+    return redirect(`/onboarding?step=${onboardingStep}`);
+  }
 
   return typedjson({
     onboardingStep,
