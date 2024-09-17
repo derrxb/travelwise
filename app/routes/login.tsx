@@ -92,8 +92,8 @@ const Login = () => {
   const actionData = useTypedActionData<typeof action>();
 
   return (
-    <MainLayout className="space-y-8">
-      <Card className="w-full border-none shadow-lg">
+    <MainLayout enableBackgroundImage className="space-y-8 items-center">
+      <Card className="w-full md:max-w-xl border-none shadow-lg">
         <CardHeader>
           <CardTitle className="text-2xl text-black">Sign In Now</CardTitle>
           <CardDescription className="text-gray-600">Discover the World with Every Sign In</CardDescription>
@@ -112,7 +112,13 @@ const Login = () => {
         </CardContent>
       </Card>
 
-      <Button asChild type="submit" size="lg" variant="default" className="!text-black !bg-white !w-full !mx-auto">
+      <Button
+        asChild
+        type="submit"
+        size="lg"
+        variant="default"
+        className="!text-black !bg-white !w-full !mx-auto md:!max-w-xl"
+      >
         <Link to="/register">Sign Up</Link>
       </Button>
     </MainLayout>
