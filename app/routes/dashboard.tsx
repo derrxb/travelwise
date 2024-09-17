@@ -1,6 +1,7 @@
 import { type LoaderFunctionArgs, type MetaFunction } from '@vercel/remix';
+import { redirect } from 'remix-typedjson';
+import { authenticator } from '~/auth.server';
 import { MainLayout } from '~/ui/layouts/main';
-import { IntroductionCarousel } from '~/ui/molecules/introduction-carousel';
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,6 +16,12 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async (args: LoaderFunctionArgs) => {
+  const user = await authenticator.isAuthenticated(args.request, {});
+
+  if (!user?.isOnboarded) {
+    return redirect('/onboarding');
+  }
+
   return null;
 };
 

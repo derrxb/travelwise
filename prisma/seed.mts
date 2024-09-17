@@ -1,7 +1,8 @@
 import { faker } from '@faker-js/faker';
-import { PrismaClient } from '@prisma/client';
+import { CountryCode, PrismaClient } from '@prisma/client';
 import bycrypt from 'bcryptjs';
 import { nanoid } from 'nanoid';
+import { differenceInYears } from 'date-fns';
 
 const db = new PrismaClient();
 
@@ -39,6 +40,17 @@ const seed = async () => {
         email: `business-${index}${nanoid(2)}@krabuu.com`,
         username: businessName.toLowerCase() + nanoid(3),
         password,
+        UserProfile: {
+          create: {
+            country: CountryCode.US,
+            travelAppSatisfaction: false,
+            aiFeatures: {
+              features: ['AI Itinerary ChatBox', 'Community Discussion', 'Integration of Other Platform']
+            },
+            travelType: "Solo",
+            dateOfBirth: new Date(differenceInYears(new Date(), new Date(1997, 10, 10))),
+          }
+        }
       },
     });
 
