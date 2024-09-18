@@ -69,6 +69,9 @@ export class UserRepository {
         username: name,
         email,
         password: hashedPassword,
+        UserProfile: {
+          create: {},
+        },
       },
     });
 
