@@ -6,7 +6,7 @@ import { NavLogo } from '~/ui/atoms/NavLogo';
 
 export const SiteNav = ({ className }: { className?: string }) => {
   const navigate = useNavigate();
-  const user = useUser();
+  const { user } = useUser();
 
   return (
     <nav className={`flex h-[96px] w-full flex-row items-center ${className}`}>
