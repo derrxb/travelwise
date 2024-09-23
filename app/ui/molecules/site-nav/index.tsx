@@ -16,6 +16,12 @@ export const SiteNav = ({ className }: { className?: string }) => {
 
       <div className="ml-auto hidden sm:flex">
         {user ? (
+          <Form action="/logout" method="POST">
+            <Button size="lg" variant="default" className="!bg-gray-900 !text-white !w-fit !mx-auto">
+              Log out
+            </Button>
+          </Form>
+        ) : (
           <Button
             onClick={() => navigate('/login')}
             size="lg"
@@ -24,12 +30,6 @@ export const SiteNav = ({ className }: { className?: string }) => {
           >
             Log in <ArrowLongRightIcon className="text-white h-8 w-10" />
           </Button>
-        ) : (
-          <Form action="/logout" method="POST">
-            <Button size="lg" variant="default" className="!bg-gray-900 !text-white !w-fit !mx-auto">
-              Log out
-            </Button>
-          </Form>
         )}
       </div>
     </nav>
