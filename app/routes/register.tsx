@@ -15,8 +15,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/ui/
 import { MainLayout } from '~/ui/layouts/main';
 import { RegisterForm } from '~/ui/organisms/auth/register-form';
 
-const getValuesFromRequest = async (request: Request) => {
-  const formData = await request.formData();
+const getValuesFromRequest = async (formData: FormData) => {
   const values = Object.fromEntries(formData);
 
   return values;
@@ -42,8 +41,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   let headers;
+  const formData = await request.formData();
   try {
-    const formData = await request.formData();
     const name = formData.get('name');
     const email = formData.get('email');
     const password = formData.get('password');
@@ -67,7 +66,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     if (error instanceof Response) throw error;
     if (error instanceof AuthorizationError) {
       return typedjson({
-        values: await getValuesFromRequest(request),
+        values: await getValuesFromRequest(formData),
         errors: {
           general: getErrorMessage(error),
         },
@@ -75,7 +74,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     }
 
     return typedjson({
-      values: await getValuesFromRequest(request),
+      values: await getValuesFromRequest(formData),
       errors: {
         general: getErrorMessage(error),
       },
