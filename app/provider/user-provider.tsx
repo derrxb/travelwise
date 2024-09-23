@@ -21,3 +21,16 @@ export const UserProvider = ({ user, children }: UserContextProps & { children: 
   );
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
+
+/**
+ * Access to the user's session context.
+ */
+export function useUser() {
+  const context = React.useContext(UserContext);
+
+  if (typeof context === 'undefined') {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+
+  return context;
+}
