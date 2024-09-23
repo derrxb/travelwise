@@ -42,8 +42,9 @@ export default defineConfig({
             'sonic-boom',
             'strip-json-comments',
             'posthog-js',
+            '@radix-ui/react-compose-refs',
           ]
-        : [],
+        : ['@radix-ui/react-compose-refs', /^\@radix-ui/],
   },
   plugins: [remix({ presets: [vercelPreset()] }), tsconfigPaths()],
   resolve: {

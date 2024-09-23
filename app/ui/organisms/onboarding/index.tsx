@@ -1,3 +1,4 @@
+import { OnboardUserFormErrors } from '~/domain/travelwise/services/onboard-user';
 import { AgeForm } from './age-form';
 import { InterestedFeaturesForm } from './ai-features';
 import { CountryForm } from './country-form';
@@ -12,7 +13,7 @@ export enum OnboardingFlow {
   DoYouThinkExistingTravelAppMeetYourNeeds = 'do-you-like-existing-travel-apps',
 }
 
-export const OnboardingForm = ({ step }: { step: OnboardingFlow }) => {
+export const OnboardingForm = ({ step, formErrors }: { step: OnboardingFlow; formErrors?: OnboardUserFormErrors }) => {
   if (step === OnboardingFlow.Age) {
     return <AgeForm />;
   }
