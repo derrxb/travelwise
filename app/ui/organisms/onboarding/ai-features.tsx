@@ -6,6 +6,8 @@ import { Alert, AlertDescription, AlertTitle } from '~/ui/atoms/alert';
 import { Button } from '~/ui/atoms/button';
 import { InputField } from '~/ui/atoms/input-field-deprecated';
 import aiFeatures from '/onboarding/ai-features.png';
+import { getImageProps } from '~/ui/atoms/image-next/utils';
+import { ImageNext } from '~/ui/atoms/image-next';
 
 export const InterestedFeaturesForm = () => {
   const fetcherData = useTypedFetcher<{ formErrors?: OnboardUserFormErrors }>();
@@ -28,7 +30,10 @@ export const InterestedFeaturesForm = () => {
   return (
     <div className={cn('p-4 grid grid-cols-1 lg:grid-cols-8 space-y-4 gap-4', {})}>
       <div className="lg:col-span-6">
-        <img src={aiFeatures} className="w-full h-[40vh] lg:h-[80vh] object-cover object-center rounded-2xl" />
+        <ImageNext
+          {...getImageProps('/public/onboarding/ai-features')}
+          className="w-full h-[40vh] lg:h-[80vh] object-cover object-center rounded-2xl"
+        />
       </div>
       <div className="lg:col-span-2 flex flex-col lg:justify-center space-y-8">
         <h3 className="text-3xl font-black text-center">Which features will you most likely use?</h3>

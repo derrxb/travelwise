@@ -1,13 +1,17 @@
 import { Link } from '@remix-run/react';
 import { cn } from '~/lib/utils';
 import { Button } from '~/ui/atoms/button';
-import age from '/onboarding/age.png';
+import { ImageNext } from '~/ui/atoms/image-next';
+import { getImageProps } from '~/ui/atoms/image-next/utils';
 
 export const UserFinishOnboarding = () => {
   return (
     <div className={cn('p-4 grid grid-cols-1 md:grid-cols-8 space-y-4 gap-4')}>
       <div className="md:col-span-6">
-        <img src={age} className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl" />
+        <ImageNext
+          {...getImageProps('/public/onboarding/ai-features')}
+          className="w-full h-[40vh] lg:h-[80vh] object-cover object-center rounded-2xl"
+        />{' '}
       </div>
 
       <div className="md:col-span-2 flex flex-col md:justify-center space-y-4 text-center leading-relaxed">
