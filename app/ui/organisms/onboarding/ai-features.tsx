@@ -4,10 +4,9 @@ import { OnboardUserFormErrors } from '~/domain/travelwise/services/onboard-user
 import { cn } from '~/lib/utils';
 import { Alert, AlertDescription, AlertTitle } from '~/ui/atoms/alert';
 import { Button } from '~/ui/atoms/button';
-import { InputField } from '~/ui/atoms/input-field-deprecated';
-import aiFeatures from '/onboarding/ai-features.png';
-import { getImageProps } from '~/ui/atoms/image-next/utils';
 import { ImageNext } from '~/ui/atoms/image-next';
+import { getImageProps } from '~/ui/atoms/image-next/utils';
+import { InputField } from '~/ui/atoms/input-field-deprecated';
 
 export const InterestedFeaturesForm = () => {
   const fetcherData = useTypedFetcher<{ formErrors?: OnboardUserFormErrors }>();
