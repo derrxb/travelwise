@@ -11,11 +11,11 @@ export const TravelerTypeForm = () => {
   const isSubmitting = fetcherData.state === 'submitting';
 
   return (
-    <div className={cn('p-4 grid grid-cols-1 md:grid-cols-8 space-y-4 gap-4', {})}>
-      <div className="md:col-span-6">
-        <img src={travelerType} className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl" />
+    <div className={cn('p-4 grid grid-cols-1 lg:grid-cols-8 space-y-4 gap-4', {})}>
+      <div className="lg:col-span-6">
+        <img src={travelerType} className="w-full h-[40vh] lg:h-[80vh] object-cover object-center rounded-2xl" />
       </div>
-      <div className="md:col-span-2 flex flex-col md:justify-center space-y-2">
+      <div className="lg:col-span-2 flex flex-col lg:justify-center space-y-2">
         <h3 className="text-3xl font-black text-center">Which one describes you?</h3>
         {formErrors?.travelType ? (
           <Alert variant="destructive">
@@ -24,7 +24,7 @@ export const TravelerTypeForm = () => {
           </Alert>
         ) : null}
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8">
+        <fetcherData.Form action="/onboarding" method="POST">
           <input name="travelType" defaultValue="SOLO" hidden />
           <Button
             disabled={isSubmitting}
@@ -37,7 +37,7 @@ export const TravelerTypeForm = () => {
           </Button>
         </fetcherData.Form>
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8">
+        <fetcherData.Form action="/onboarding" method="POST">
           <input name="travelType" defaultValue="GROUP" hidden />
           <Button
             disabled={isSubmitting}
@@ -50,7 +50,7 @@ export const TravelerTypeForm = () => {
           </Button>
         </fetcherData.Form>
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8">
+        <fetcherData.Form action="/onboarding" method="POST">
           <input name="travelType" defaultValue="BOTH" hidden />
           <Button
             disabled={isSubmitting}
@@ -62,6 +62,8 @@ export const TravelerTypeForm = () => {
             A bit of both
           </Button>
         </fetcherData.Form>
+
+        <div className="w-32 mx-auto !mt-8 h-[6px] bg-black rounded-3xl"></div>
       </div>
     </div>
   );

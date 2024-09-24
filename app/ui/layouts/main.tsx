@@ -20,7 +20,7 @@ export const MainLayout = ({
     >
       <SiteNav />
 
-      <main className={cn('h-full w-full flex flex-col pt-6 md:pt-12', className)}>{children}</main>
+      <main className={cn('h-full w-full flex flex-col', className)}>{children}</main>
     </div>
   );
 };

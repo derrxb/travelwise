@@ -12,9 +12,9 @@ export const AgeForm = () => {
   const isSubmitting = fetcherData.state === 'submitting';
 
   return (
-    <div className={cn('p-4 grid grid-cols-1 md:grid-cols-8 space-y-4 gap-4')}>
+    <div className={cn('p-4 grid grid-cols-1 lg:grid-cols-8 space-y-4 gap-4')}>
       <div className="md:col-span-6">
-        <img src={age} className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl" />
+        <img src={age} className="w-full h-[40vh] lg:h-[80vh] object-cover object-center rounded-2xl" />
       </div>
 
       <div className="md:col-span-2 flex flex-col md:justify-center space-y-4">
@@ -27,7 +27,7 @@ export const AgeForm = () => {
           </Alert>
         ) : null}
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8">
+        <fetcherData.Form action="/onboarding" method="POST">
           <input name="dateOfBirth" defaultValue={18} hidden />
           <Button
             disabled={isSubmitting}
@@ -40,7 +40,7 @@ export const AgeForm = () => {
           </Button>
         </fetcherData.Form>
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8">
+        <fetcherData.Form action="/onboarding" method="POST">
           <input name="dateOfBirth" defaultValue={18} hidden />
           <Button
             disabled={isSubmitting}
@@ -53,7 +53,7 @@ export const AgeForm = () => {
           </Button>
         </fetcherData.Form>
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8">
+        <fetcherData.Form action="/onboarding" method="POST">
           <input name="dateOfBirth" defaultValue={35} hidden />
           <Button
             disabled={isSubmitting}
@@ -66,7 +66,7 @@ export const AgeForm = () => {
           </Button>
         </fetcherData.Form>
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8">
+        <fetcherData.Form action="/onboarding" method="POST">
           <input name="dateOfBirth" defaultValue={50} hidden />
           <Button
             disabled={isSubmitting}
@@ -78,6 +78,8 @@ export const AgeForm = () => {
             Above 50
           </Button>
         </fetcherData.Form>
+
+        <div className="w-32 mx-auto !mt-8 h-[6px] bg-black rounded-3xl"></div>
       </div>
     </div>
   );

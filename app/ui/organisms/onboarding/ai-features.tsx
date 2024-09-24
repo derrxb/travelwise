@@ -26,11 +26,11 @@ export const InterestedFeaturesForm = () => {
   };
 
   return (
-    <div className={cn('p-4 grid grid-cols-1 md:grid-cols-8 space-y-4 gap-4', {})}>
-      <div className="md:col-span-6">
-        <img src={aiFeatures} className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl" />
+    <div className={cn('p-4 grid grid-cols-1 lg:grid-cols-8 space-y-4 gap-4', {})}>
+      <div className="lg:col-span-6">
+        <img src={aiFeatures} className="w-full h-[40vh] lg:h-[80vh] object-cover object-center rounded-2xl" />
       </div>
-      <div className="md:col-span-2 flex flex-col md:justify-center space-y-8">
+      <div className="lg:col-span-2 flex flex-col lg:justify-center space-y-8">
         <h3 className="text-3xl font-black text-center">Which features will you most likely use?</h3>
         {formErrors?.aiFeatures ? (
           <Alert variant="destructive">
@@ -39,7 +39,7 @@ export const InterestedFeaturesForm = () => {
           </Alert>
         ) : null}
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8 mx-auto">
+        <fetcherData.Form action="/onboarding" method="POST" className="mx-auto">
           {selectedFeatures
             ? selectedFeatures?.map((item) => <input name="aiFeatures" hidden onChange={() => {}} value={item} />)
             : null}
@@ -73,6 +73,8 @@ export const InterestedFeaturesForm = () => {
                 placeholder="Your own answer"
                 labelClassName="text-xs"
                 className="border-2 border-black"
+                onChange={(e) => setCustomFeature(e.target?.value)}
+                value={customFeature}
               />
             ) : null}
 

@@ -1,14 +1,14 @@
-import { cn } from '~/lib/utils';
-import country from '/onboarding/origin.png';
+import { countries, TCountryCode } from 'countries-list';
+import { Check, ChevronsUpDown } from 'lucide-react';
+import React from 'react';
 import { useTypedFetcher } from 'remix-typedjson';
 import { OnboardUserFormErrors } from '~/domain/travelwise/services/onboard-user';
+import { cn } from '~/lib/utils';
 import { Alert, AlertDescription, AlertTitle } from '~/ui/atoms/alert';
 import { Button } from '~/ui/atoms/button';
-import { countries, languages, TCountryCode } from 'countries-list';
-import { Popover, PopoverContent, PopoverTrigger } from '~/ui/molecules/popover';
-import React from 'react';
-import { Check, ChevronsUpDown } from 'lucide-react';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '~/ui/molecules/command';
+import { Popover, PopoverContent, PopoverTrigger } from '~/ui/molecules/popover';
+import country from '/onboarding/origin.png';
 
 export const CountryForm = () => {
   const fetcherData = useTypedFetcher<{ formErrors?: OnboardUserFormErrors }>();
@@ -19,11 +19,11 @@ export const CountryForm = () => {
   const [value, setValue] = React.useState<TCountryCode | string>('');
 
   return (
-    <div className={cn('p-4 grid grid-cols-1 md:grid-cols-8 space-y-4 gap-4', {})}>
-      <div className="md:col-span-6">
-        <img src={country} className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl" />
+    <div className={cn('p-4 grid grid-cols-1 lg:grid-cols-8 space-y-4 gap-4', {})}>
+      <div className="lg:col-span-6">
+        <img src={country} className="w-full h-[40vh] lg:h-[80vh] object-cover object-center rounded-2xl" />
       </div>
-      <div className="md:col-span-2 flex flex-col md:justify-center space-y-8">
+      <div className="lg:col-span-2 flex flex-col md:justify-center space-y-8">
         <h3 className="text-3xl font-black text-center">Where are you from?</h3>
 
         {formErrors?.country ? (
@@ -33,11 +33,16 @@ export const CountryForm = () => {
           </Alert>
         ) : null}
 
-        <fetcherData.Form action="/onboarding" method="POST" className="md:px-8 space-y-4">
+        <fetcherData.Form action="/onboarding" method="POST" className="lg:px-8 space-y-4">
           <input name="country" hidden onChange={() => {}} value={value} />
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-              <Button variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between">
+              <Button
+                variant="outline"
+                role="combobox"
+                aria-expanded={open}
+                className="w-full justify-between h-14 border-black border-2"
+              >
                 {value ? countries[value as any as TCountryCode]?.name : 'Select Country...'}
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
