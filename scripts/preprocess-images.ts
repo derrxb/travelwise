@@ -4,7 +4,7 @@ import { env } from 'process';
 import sharp from 'sharp';
 
 // Base directory to process images
-const baseDir = env.NODE_ENV === 'production' ? './images' : path.resolve('public/images');
+const baseDir = env.NODE_ENV === 'production' ? './public/images' : path.resolve('public/images');
 
 // Utility function to delete all LQIP images from the directories
 async function deleteLqipImages(folderPath: string) {
