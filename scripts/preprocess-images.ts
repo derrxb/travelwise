@@ -91,7 +91,8 @@ async function processImage(imagePath: string, outputDir: string) {
     await image.toFormat('webp').toFile(originalWebpPath);
 
     // Create low LQIP version
-    await image.blur(100).toFormat('webp').toFile(lowLqipPath);
+    const result = await image.blur(100).toFormat('webp').toFile(lowLqipPath);
+    console.log('LOW: ', { result });
 
     // Create medium LQIP version
     await image.blur(50).toFormat('webp').toFile(mediumLqipPath);
@@ -105,6 +106,7 @@ async function processImage(imagePath: string, outputDir: string) {
 // Process each folder
 async function processFolder(folderPath: string) {
   const entries = await fs.readdir(folderPath, { withFileTypes: true });
+  console.log(JSON.stringify(entries));
 
   for (const entry of entries) {
     const entryPath = path.join(folderPath, entry.name);
@@ -112,8 +114,11 @@ async function processFolder(folderPath: string) {
     // If it's a directory, process the images within it
     if (entry.isDirectory()) {
       const nestedEntries = await fs.readdir(entryPath);
+      console.log(JSON.stringify(nestedEntries));
 
       for (const nestedEntry of nestedEntries) {
+        console.log(JSON.stringify(nestedEntry));
+
         if (nestedEntry.startsWith('original')) {
           const originalImagePath = path.join(entryPath, nestedEntry);
           await processImage(originalImagePath, entryPath);
