@@ -24,6 +24,7 @@ export class OnboardUser {
       country: formData.get('country'),
       travelType: formData.get('travelType'),
       aiFeatures: aiFeatures && aiFeatures?.length > 0 ? aiFeatures : null,
+      appSatisfaction: formData?.get('appSatisfaction') || null,
     });
 
     return data;
@@ -40,7 +41,8 @@ export class OnboardUser {
       dateOfBirth: updates?.dateOfBirth ? subYears(new Date(), updates.dateOfBirth) : undefined,
       country: updates?.country ? updates?.country : undefined,
       travelType: updates?.travelType ? updates?.travelType : undefined,
-      aiFeatures: updates?.aiFeatures ? updates.aiFeatures : undefined, // Store aiFeatures in the user profile
+      aiFeatures: updates?.aiFeatures ? updates.aiFeatures : undefined,
+      appSatisfaction: updates?.appSatisfaction ? updates?.appSatisfaction : undefined,
     });
 
     // Replace the user profile on the user

@@ -266,19 +266,24 @@ model User {
   email       String       @unique @db.VarChar(255)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  isOnboarded Boolean      @default(false)
   UserProfile UserProfile?
 }
 
+enum TravelAppSatisfaction {
+  YES
+  NO
+  UNDECIDED
+}
+
 model UserProfile {
-  id                    String       @id @default(cuid())
-  createdAt             DateTime     @default(now())
-  updatedAt             DateTime     @updatedAt
-  country               CountryCode?
-  dateOfBirth           DateTime?
-  travelAppSatisfaction Boolean?
-  travelType            String?
-  aiFeatures            Json?
-  userId                Int          @unique
-  User                  User         @relation(fields: [userId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  id              String                 @id @default(cuid())
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+  country         CountryCode?
+  dateOfBirth     DateTime?
+  travelType      String?
+  appSatisfaction TravelAppSatisfaction?
+  aiFeatures      Json?
+  userId          Int                    @unique
+  User            User                   @relation(fields: [userId], references: [id], onUpdate: NoAction, onDelete: NoAction)
 }

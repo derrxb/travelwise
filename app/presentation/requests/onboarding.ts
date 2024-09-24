@@ -1,4 +1,4 @@
-import { CountryCode } from '@prisma/client';
+import { CountryCode, TravelAppSatisfaction } from '@prisma/client';
 import { z } from 'zod';
 
 export const onboardingSchema = z.object({
@@ -9,4 +9,5 @@ export const onboardingSchema = z.object({
     .union([z.array(z.string()), z.null()])
     .optional()
     .nullable(),
+  appSatisfaction: z.nativeEnum(TravelAppSatisfaction).optional().nullable(),
 });

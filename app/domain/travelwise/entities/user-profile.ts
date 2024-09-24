@@ -8,7 +8,7 @@ export class UserProfileEntity {
   updatedAt: UserProfileORM['updatedAt'];
   country: UserProfileORM['country'];
   dateOfBirth: UserProfileORM['dateOfBirth'];
-  travelAppSatisfaction: UserProfileORM['travelAppSatisfaction'];
+  appSatisfaction: UserProfileORM['appSatisfaction'];
   travelType: UserProfileORM['travelType'];
   aiFeatures: UserProfileORM['aiFeatures'];
   userId: UserProfileORM['userId'];
@@ -19,7 +19,7 @@ export class UserProfileEntity {
     this.updatedAt = userProfile?.updatedAt;
     this.country = userProfile?.country;
     this.dateOfBirth = userProfile?.dateOfBirth;
-    this.travelAppSatisfaction = userProfile?.travelAppSatisfaction;
+    this.appSatisfaction = userProfile?.appSatisfaction;
     this.travelType = userProfile?.travelType;
     this.aiFeatures = userProfile?.aiFeatures;
     this.userId = userProfile?.userId;
@@ -30,14 +30,7 @@ export class UserProfileEntity {
   }
 
   isOnboardingComplete() {
-    return Boolean(
-      this.country &&
-        this.dateOfBirth &&
-        this.travelType &&
-        this.aiFeatures &&
-        typeof this.travelAppSatisfaction !== 'undefined' &&
-        this.travelAppSatisfaction !== null,
-    );
+    return Boolean(this.country && this.dateOfBirth && this.travelType && this.aiFeatures && this.appSatisfaction);
   }
 
   get currentOnboardingStep() {
@@ -57,7 +50,7 @@ export class UserProfileEntity {
       return OnboardingFlow.InterestedFeatures;
     }
 
-    if (!this.travelAppSatisfaction) {
+    if (!this.appSatisfaction) {
       return OnboardingFlow.DoYouThinkExistingTravelAppMeetYourNeeds;
     }
 
@@ -71,7 +64,7 @@ export class UserProfileEntity {
       updatedAt: this.updatedAt.toString(),
       country: this.country,
       dateOfBirth: this.dateOfBirth,
-      travelAppSatisfaction: this.travelAppSatisfaction,
+      appSatisfaction: this.appSatisfaction,
       travelType: this.travelType,
       aiFeatures: this.aiFeatures,
       userId: this.userId,

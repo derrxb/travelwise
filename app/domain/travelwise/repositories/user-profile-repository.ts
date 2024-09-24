@@ -15,7 +15,7 @@ export class UserProfileRepository {
 
   static async onboardUserByUserId(
     userId: number,
-    updates: Partial<Pick<UserProfile, 'dateOfBirth' | 'country' | 'travelType' | 'aiFeatures'>>,
+    updates: Partial<Pick<UserProfile, 'dateOfBirth' | 'country' | 'travelType' | 'aiFeatures' | 'appSatisfaction'>>,
   ) {
     const result = await prisma.userProfile.update({
       data: {
@@ -23,6 +23,7 @@ export class UserProfileRepository {
         country: updates?.country,
         travelType: updates?.travelType,
         aiFeatures: updates?.aiFeatures || '',
+        appSatisfaction: updates?.appSatisfaction,
       },
       where: {
         userId,

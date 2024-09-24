@@ -1,6 +1,7 @@
 import { type LoaderFunctionArgs, type MetaFunction } from '@vercel/remix';
 import { redirect } from 'remix-typedjson';
 import { authenticator } from '~/auth.server';
+import { UserRepository } from '~/domain/travelwise/repositories/user-repository';
 import { MainLayout } from '~/ui/layouts/main';
 
 export const meta: MetaFunction = () => {
@@ -16,9 +17,10 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async (args: LoaderFunctionArgs) => {
-  const user = await authenticator.isAuthenticated(args.request, {});
+  const userId = (await authenticator.isAuthenticated(args.request, {}))?.id;
+  const user = await UserRepository.findByUserId(userId!);
 
-  if (!user?.isOnboarded) {
+  if (!user?.UserProfile?.isOnboardingComplete()) {
     return redirect('/onboarding');
   }
 
