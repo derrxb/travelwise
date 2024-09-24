@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { env } from 'process';
 import sharp from 'sharp';
 
 // Base directory to process images
@@ -67,9 +68,10 @@ async function processImage(imagePath: string, outputDir: string) {
   const filename = path.basename(imagePath, path.extname(imagePath)); // image name without extension
   const originalFileExt = path.extname(imagePath); // file extension of original file
 
-  const lowLqipPath = path.join(outputDir, `lqip-low.webp`);
-  const mediumLqipPath = path.join(outputDir, `lqip-medium.webp`);
-  const originalWebpPath = path.join(outputDir, `lqip-original.webp`);
+  const updatedOutputDir = env.NODE_ENV === 'production' ? outputDir.replace('/public', '') : outputDir;
+  const lowLqipPath = path.join(updatedOutputDir, `lqip-low.webp`);
+  const mediumLqipPath = path.join(updatedOutputDir, `lqip-medium.webp`);
+  const originalWebpPath = path.join(updatedOutputDir, `lqip-original.webp`);
 
   try {
     const image = sharp(imagePath);
