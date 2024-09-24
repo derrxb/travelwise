@@ -91,12 +91,10 @@ async function processImage(imagePath: string, outputDir: string) {
     await image.toFormat('webp').toFile(originalWebpPath);
 
     // Create low LQIP version
-    await image.blur(100).toFormat('webp').toFile(lowLqipPath);
+    await image.blur(75).toFormat('webp').toFile(lowLqipPath);
 
     // Create medium LQIP version
     await image.blur(50).toFormat('webp').toFile(mediumLqipPath);
-
-    console.log(`Processed LQIPs`);
   } catch (error) {
     console.error(`Error processing ${imagePath}:`, error);
   }

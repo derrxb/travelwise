@@ -28,55 +28,49 @@ export const ImageNext = (props: ImageProps) => {
       className={clsx(
         'relative aspect-video overflow-hidden bg-cover bg-center bg-no-repeat object-cover object-center rounded-md',
         {
-          'animate-pulse bg-gray-200': !lowLoaded,
+          'bg-gray-200': !lowLoaded,
         },
         props?.className,
       )}
     >
-      {/* LQIP Image */}
-      {props.lowSrc && (
-        <img
-          ref={lowRef}
-          alt={props.alt}
-          style={{
-            transition: 'opacity 0.5s ease-in',
-          }}
-          src={props.lowSrc}
-          className={clsx(
-            'absolute top-0 left-0 aspect-video h-full w-full object-cover object-center rounded-md',
-            {
-              'opacity-100': lowLoaded && !mediumLoaded,
-              'opacity-0': mediumLoaded,
-            },
-            props?.className,
-          )}
-          onLoad={() => setLowLoaded(true)}
-        />
-      )}
-
-      {/* Medium-Resolution Image */}
-      {props.mediumSrc && (
+      <img
+        ref={lowRef}
+        alt={props.alt}
+        style={{
+          transition: 'opacity 0.5s ease-in',
+        }}
+        src={props.lowSrc}
+        className={clsx(
+          'absolute top-0 left-0 aspect-video h-full w-full object-cover object-center rounded-md',
+          {
+            'opacity-100': !mediumLoaded,
+            'opacity-0': mediumLoaded,
+          },
+          props?.className,
+        )}
+        onLoad={() => setLowLoaded(true)}
+      />
+      {lowLoaded ? (
         <img
           ref={mediumRef}
           alt={props.alt}
           style={{
             transition: 'opacity 0.5s ease-in',
           }}
-          src={props.lowSrc}
+          src={props.mediumSrc}
           className={clsx(
             'absolute top-0 left-0 aspect-video h-full w-full object-cover object-center rounded-md',
             {
-              'opacity-100': mediumLoaded && !highLoaded,
+              'opacity-100': !highLoaded,
               'opacity-0': mediumLoaded,
             },
             props?.className,
           )}
           onLoad={() => setMediumLoaded(true)}
         />
-      )}
+      ) : null}
 
-      {/* High-Resolution Image */}
-      {props.originalSrc && (
+      {mediumLoaded ? (
         <img
           ref={highRef}
           alt={props.alt}
@@ -94,7 +88,7 @@ export const ImageNext = (props: ImageProps) => {
           )}
           onLoad={() => setHighLoaded(true)}
         />
-      )}
+      ) : null}
     </figure>
   );
 };
