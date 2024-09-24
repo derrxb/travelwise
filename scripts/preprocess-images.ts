@@ -36,8 +36,12 @@ async function deleteLqipImages(folderPath: string) {
 // Utility function to ensure that a directory exists
 async function ensureDirectoryExists(dirPath: string) {
   try {
+    if (dirPath.includes('.DS_STORE')) {
+      return;
+    }
+
     await fs.mkdir(dirPath, { recursive: true });
-    console.log(`Ensured directory exists: ${dirPath}`);
+    console.log(`Created DIR: ${dirPath}`);
   } catch (error) {
     console.error(`Error creating directory ${dirPath}:`, error);
   }
@@ -73,31 +77,26 @@ async function createOutputFolderForImage(imagePath: string) {
 async function processImage(imagePath: string, outputDir: string) {
   const filename = path.basename(imagePath, path.extname(imagePath)); // image name without extension
   const originalFileExt = path.extname(imagePath); // file extension of original file
-
-  const updatedOutputDir = env.NODE_ENV === 'production' ? outputDir.replace('public/', '') : outputDir;
-  const lowLqipPath = path.join(updatedOutputDir, `lqip-low.webp`);
-  const mediumLqipPath = path.join(updatedOutputDir, `lqip-medium.webp`);
-  const originalWebpPath = path.join(updatedOutputDir, `lqip-original.webp`);
-
-  console.log({ outputDir, updatedOutputDir, lowLqipPath, mediumLqipPath, originalWebpPath });
+  const lowLqipPath = path.join(outputDir, `lqip-low.webp`);
+  const mediumLqipPath = path.join(outputDir, `lqip-medium.webp`);
+  const originalWebpPath = path.join(outputDir, `lqip-original.webp`);
 
   try {
     const image = sharp(imagePath);
 
     // Ensure output directories exist before saving the files
-    await ensureDirectoryExists(updatedOutputDir);
+    await ensureDirectoryExists(outputDir);
 
     // Create the original image as a webp if not exists
     await image.toFormat('webp').toFile(originalWebpPath);
 
     // Create low LQIP version
-    const result = await image.blur(100).toFormat('webp').toFile(lowLqipPath);
-    console.log('LOW: ', { result });
+    await image.blur(100).toFormat('webp').toFile(lowLqipPath);
 
     // Create medium LQIP version
     await image.blur(50).toFormat('webp').toFile(mediumLqipPath);
 
-    console.log(`Processed LQIPs for: ${filename}`);
+    console.log(`Processed LQIPs`);
   } catch (error) {
     console.error(`Error processing ${imagePath}:`, error);
   }
@@ -105,8 +104,7 @@ async function processImage(imagePath: string, outputDir: string) {
 
 // Process each folder
 async function processFolder(folderPath: string) {
-  const entries = await fs.readdir(folderPath, { withFileTypes: true });
-  console.log(JSON.stringify(entries));
+  const entries = (await fs.readdir(folderPath, { withFileTypes: true })).filter((e) => !e.name?.includes('DS_Store'));
 
   for (const entry of entries) {
     const entryPath = path.join(folderPath, entry.name);
@@ -114,12 +112,8 @@ async function processFolder(folderPath: string) {
     // If it's a directory, process the images within it
     if (entry.isDirectory()) {
       const nestedEntries = await fs.readdir(entryPath);
-      console.log(JSON.stringify(nestedEntries));
-
       for (const nestedEntry of nestedEntries) {
-        console.log(JSON.stringify(nestedEntry));
-
-        if (nestedEntry.startsWith('original')) {
+        if (nestedEntry.startsWith('original') && !nestedEntry.includes('DS_Store')) {
           const originalImagePath = path.join(entryPath, nestedEntry);
           await processImage(originalImagePath, entryPath);
         }
@@ -128,7 +122,7 @@ async function processFolder(folderPath: string) {
     }
 
     // If the file is not in a folder and doesn't have 'lqip' in its name, process it
-    if (entry.isFile() && !entry.name.includes('lqip')) {
+    if (entry.isFile() && !entry.name.includes('lqip') && !entry.name.includes('.DS_STORE')) {
       // Create a folder for the image if it doesn’t have one and rename the original
       const outputDir = await createOutputFolderForImage(entryPath);
 
