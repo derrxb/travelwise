@@ -15,6 +15,7 @@
     "dev:build": "cross-env NODE_ENV=development remix vite:dev",
     "dev:db": "npx prisma studio",
     "dev:docker-db": "docker-compose up",
+    "dev:process-images": "yarn task:script ./scripts/preprocess-images.ts",
     "db:reset:dev": "dotenv -e .env.dev npx prisma migrate reset",
     "db:seed:dev": "yarn db:reset:dev && npx dotenv -e .env.dev prisma db seed",
     "db:migrate:create": "dotenv -e .env.dev npx prisma migrate dev --name",
@@ -28,7 +29,8 @@
     "test:local": "run-s db:migrate:test test:coverage:disabled",
     "test:ci": "run-s db:migrate:test npm run test:coverage:enabled",
     "test:coverage:enabled": "dotenv -e .env.test -- vitest --coverage",
-    "test:coverage:disabled": "dotenv -e .env.test -- vitest "
+    "test:coverage:disabled": "dotenv -e .env.test -- vitest ",
+    "task:script": "node --loader ts-node/esm"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.145.0",
@@ -87,6 +89,7 @@
     "remix-sitemap": "^3.2.0",
     "remix-typedjson": "^0.4.1",
     "rollbar": "^2.25.0",
+    "sharp": "^0.33.5",
     "styled-components": "^6.1.11",
     "superagent": "^7.1.3",
     "tailwind-merge": "^2.3.0",
