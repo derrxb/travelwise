@@ -33,6 +33,16 @@ async function deleteLqipImages(folderPath: string) {
   }
 }
 
+// Utility function to ensure that a directory exists
+async function ensureDirectoryExists(dirPath: string) {
+  try {
+    await fs.mkdir(dirPath, { recursive: true });
+    console.log(`Ensured directory exists: ${dirPath}`);
+  } catch (error) {
+    console.error(`Error creating directory ${dirPath}:`, error);
+  }
+}
+
 // Utility function to create the output folder and rename the original image
 async function createOutputFolderForImage(imagePath: string) {
   const imageDir = path.dirname(imagePath);
@@ -42,12 +52,8 @@ async function createOutputFolderForImage(imagePath: string) {
   // Define the new folder path for this image
   const outputFolder = path.join(imageDir, imageNameWithoutExt);
 
-  // Create the folder if it doesn't already exist
-  try {
-    await fs.mkdir(outputFolder, { recursive: true });
-  } catch (error) {
-    console.error(`Error creating folder for ${imageNameWithoutExt}:`, error);
-  }
+  // Ensure the folder exists
+  await ensureDirectoryExists(outputFolder);
 
   // Define the new path for the original image renamed to `original.<ext>`
   const newImagePath = path.join(outputFolder, `original${originalFileExt}`);
@@ -77,6 +83,9 @@ async function processImage(imagePath: string, outputDir: string) {
 
   try {
     const image = sharp(imagePath);
+
+    // Ensure output directories exist before saving the files
+    await ensureDirectoryExists(updatedOutputDir);
 
     // Create the original image as a webp if not exists
     await image.toFormat('webp').toFile(originalWebpPath);
