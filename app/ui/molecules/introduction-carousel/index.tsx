@@ -5,6 +5,8 @@ import { introductionCarousel } from '~/content/en.json';
 import { cn } from '~/lib/utils';
 import { Button } from '~/ui/atoms/button';
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '~/ui/atoms/carousel';
+import { ImageNext } from '~/ui/atoms/image-next';
+import { getImageProps } from '~/ui/atoms/image-next/utils';
 
 export const IntroductionCarousel = () => {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -54,7 +56,10 @@ export const IntroductionCarousel = () => {
           })}
         >
           <div className="md:col-span-6">
-            <img src={content.cover} className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl" />
+            <ImageNext
+              {...getImageProps(content?.cover)}
+              className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl"
+            />
           </div>
           <div className="md:col-span-2 flex flex-col md:justify-center space-y-8">
             <h3 className="text-3xl font-black text-center">{content?.title}</h3>
@@ -71,7 +76,10 @@ export const IntroductionCarousel = () => {
           })}
         >
           <div className="md:col-span-6">
-            <img src={content.cover} className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl" />
+            <ImageNext
+              {...getImageProps(content?.cover)}
+              className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl"
+            />{' '}
           </div>
           <div className="md:col-span-2 flex flex-col md:justify-center space-y-8">
             <h3 className="text-3xl font-black text-center">{content?.title}</h3>
@@ -88,7 +96,10 @@ export const IntroductionCarousel = () => {
           })}
         >
           <div className="md:col-span-6">
-            <img src={content.cover} className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl" />
+            <ImageNext
+              {...getImageProps(content?.cover)}
+              className="w-full h-[40vh] md:h-[80vh] object-cover object-center rounded-2xl"
+            />{' '}
           </div>
           <div className="md:col-span-2 flex flex-col md:justify-center space-y-8">
             <h3 className="text-3xl font-black text-center">{content?.title}</h3>

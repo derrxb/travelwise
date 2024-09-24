@@ -4,19 +4,19 @@
       "title": "Plan your trip with Travel wise!",
       "description": "Plan and experience your adventures effortlessly with Travel Wise. Enjoy personalized itineraries, community insights, and seamless booking.",
       "cta": "Get Started!",
-      "cover": "/introductionCarousel/travel1.png"
+      "cover": "/images/introduction-carousel/travel1"
     },
     {
       "title": "Seamless planning for every journey!",
       "description": "Plan and experience your adventures effortlessly with Travel Wise. Enjoy personalized itineraries, community insights, and seamless booking.",
       "cta": "Next",
-      "cover": "/introductionCarousel/travel2.png"
+      "cover": "/images/introduction-carousel/travel2"
     },
     {
       "title": "Smart Travel Solutions itineraries",
       "description": "Plan and experience your adventures effortlessly with Travel Wise. Enjoy personalized itineraries, community insights, and seamless booking.",
       "cta": "Next",
-      "cover": "/introductionCarousel/travel3.png"
+      "cover": "/images/introduction-carousel/travel3"
     }
   ]
 }
