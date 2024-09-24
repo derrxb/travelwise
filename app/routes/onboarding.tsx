@@ -8,7 +8,7 @@ import { UserRepository } from '~/domain/travelwise/repositories/user-repository
 import { OnboardUser, OnboardUserFormErrors } from '~/domain/travelwise/services/onboard-user';
 import { getErrorMessage } from '~/lib/error-messages';
 import { MainLayout } from '~/ui/layouts/main';
-import { OnboardingForm } from '~/ui/organisms/onboarding';
+import { OnboardingFlow, OnboardingForm } from '~/ui/organisms/onboarding';
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const searchParams = new URL(args.request.url).searchParams;
@@ -20,8 +20,8 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
   const user = await UserRepository.findByUserId(userId!);
 
-  if (user?.UserProfile.isOnboardingComplete()) {
-    return redirect('/dashboard');
+  if (user?.UserProfile.isOnboardingComplete() && !searchParams.get('step')) {
+    return redirect(`/onboarding?step=${OnboardingFlow.Done}`);
   }
 
   const onboardingStep = user?.UserProfile.currentOnboardingStep;

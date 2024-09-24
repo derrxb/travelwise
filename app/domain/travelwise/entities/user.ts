@@ -8,7 +8,6 @@ export class UserEntity {
   password?: UserORM['password'];
   createdAt?: UserORM['createdAt'];
   updatedAt?: UserORM['updatedAt'];
-  isOnboarded?: UserORM['isOnboarded'];
   UserProfile: UserProfileEntity;
 
   constructor(user: UserORM & { UserProfile: UserProfileEntity }) {
@@ -18,7 +17,6 @@ export class UserEntity {
     this.password = user.password;
     this.createdAt = user.createdAt;
     this.updatedAt = user.updatedAt;
-    this.isOnboarded = user.isOnboarded;
     this.UserProfile = user.UserProfile;
   }
 
@@ -32,13 +30,12 @@ export class UserEntity {
       email: this.email,
       id: this.id,
       username: this.username,
-      isOnboarded: this.isOnboarded,
       UserProfile: this.UserProfile?.json(),
     } as UserDTO;
   }
 }
 
-export type UserDTO = Pick<UserEntity, 'email' | 'id' | 'username' | 'isOnboarded'> & {
+export type UserDTO = Pick<UserEntity, 'email' | 'id' | 'username'> & {
   createdAt?: string;
   updatedAt?: string;
   UserProfile: UserProfileDTO;

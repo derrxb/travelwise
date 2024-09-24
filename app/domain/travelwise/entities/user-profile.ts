@@ -54,7 +54,7 @@ export class UserProfileEntity {
       return OnboardingFlow.DoYouThinkExistingTravelAppMeetYourNeeds;
     }
 
-    throw new Failure('bad_request', 'Onboarding has been completed, there is no need to double-check');
+    return OnboardingFlow.Done;
   }
 
   json(): UserProfileDTO {
