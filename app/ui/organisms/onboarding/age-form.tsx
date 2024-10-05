@@ -15,7 +15,7 @@ export const AgeForm = () => {
     <div className={cn('p-4 grid grid-cols-1 lg:grid-cols-8 space-y-4 gap-4')}>
       <div className="md:col-span-6">
         <ImageNext
-          {...getImageProps('/public/images/onboarding/age')}
+          {...getImageProps('/images/onboarding/age')}
           className="w-full h-[40vh] lg:h-[80vh] object-cover object-center rounded-2xl"
         />
       </div>
